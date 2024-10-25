@@ -4,15 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "-": "^0.0.1",
     "express": "^4.21.1",
+    "lint-staged": "^15.2.10",
     "nodemon": "^3.1.7"
   },
   "devDependencies": {
     "@types/node": "^22.8.0",
+    "husky": "^9.1.6",
     "ts-node": "^10.9.2",
     "typecript": "^0.0.1-security"
   }
