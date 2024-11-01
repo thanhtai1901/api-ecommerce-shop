@@ -19,8 +19,12 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "install": "^0.13.0",
     "lint-staged": "^15.2.10",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.0",
     "nodemon": "^3.1.7"
   },
   "devDependencies": {
