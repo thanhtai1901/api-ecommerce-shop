@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import connectDatabase from './config/database/database.config';
 dotenv.config();
 const app = express();
 const PORT = 3000;
 app.use(express.json());
-
+connectDatabase();
 app.get('/', (req: Request, res: Response) => {
   res.send('taideptrai1901');
 });
