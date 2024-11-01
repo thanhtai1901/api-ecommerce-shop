@@ -10,6 +10,7 @@ const connectDatabase = async () => {
           socketTimeoutMS: 4500,
         },
       );
+      console.log('Connected mongodb thành công');
     } catch (error) {
       console.log('Không thể kết nối với mongodb. Lỗi: ', error);
       setTimeout(connectWithRetry, 5000);
