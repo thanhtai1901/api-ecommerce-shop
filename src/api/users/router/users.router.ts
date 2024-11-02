@@ -6,3 +6,4 @@ const usersController = new UsersController();
 usersRouter.get('/', (req, res) => {
   usersController.getAllUsers(req, res);
 });
+export default usersRouter;
