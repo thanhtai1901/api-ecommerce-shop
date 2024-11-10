@@ -10,4 +10,11 @@ export class MenuService {
   async createMenus(usersData: Partial<createMenu>): Promise<createMenu> {
     return await this.menuReponsitory.createMenu(usersData);
   }
+  async getMenuById(id: string): Promise<IMenu | null> {
+    const menu = await this.menuReponsitory.getMenuById(id); // Fixed the method call here
+    if (!menu) {
+      throw new Error('Menu not found'); // Updated the error message
+    }
+    return menu;
+  }
 }

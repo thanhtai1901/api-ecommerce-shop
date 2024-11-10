@@ -8,6 +8,9 @@ menusRouter.get('/', (req, res) => {
   menusController.getAllMenus(req, res);
   menusRouter.post('/', (req, res) => {
     menusController.createMenus(req, res);
+    menusRouter.get('/:id', (req, res) => {
+      menusController.getMenusById(req, res);
+    });
   });
 });
 export default menusRouter;

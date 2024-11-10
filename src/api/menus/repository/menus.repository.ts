@@ -9,4 +9,7 @@ export class MenusRpository {
     const Menu = new Menus(menuData);
     return await Menu.save();
   }
+  async getMenuById(id: string): Promise<IMenu | null> {
+    return await Menus.findById(id);
+  }
 }
