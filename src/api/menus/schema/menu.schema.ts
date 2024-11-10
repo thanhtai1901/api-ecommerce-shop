@@ -1,8 +1,13 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import { IMenu } from '../dto/menus.dto';
 
 const menusChema = new Schema<IMenu>(
   {
+    categories_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'categories',
+      required: true,
+    },
     name: { type: String, required: true },
     desctiption: { type: String, required: true },
     price: { type: Number, required: true },

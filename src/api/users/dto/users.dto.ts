@@ -8,7 +8,8 @@ export interface IUser {
   address: string;
   sex: string;
   avatar: string;
-  timestamps: Date;
+  createAt: Date;
+  updateAt: Date;
 }
 export interface createUser {
   role: string;
