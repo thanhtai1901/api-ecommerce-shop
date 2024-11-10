@@ -18,4 +18,18 @@ export class UsersService {
     }
     return user;
   }
+  async deleteById(id: string): Promise<IUser | null> {
+    const user = await this.usersRepository.deleteById(id);
+    if (!user) {
+      throw new Error('user not fuond');
+    }
+    return user;
+  }
+  async updateUserById(id: string, dataUser: IUser): Promise<IUser | null> {
+    const user = await this.usersRepository.updataUsersById(id, dataUser);
+    if (!user) {
+      throw new Error('user not found');
+    }
+    return user;
+  }
 }

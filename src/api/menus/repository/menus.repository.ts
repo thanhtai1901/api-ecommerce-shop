@@ -12,4 +12,10 @@ export class MenusRpository {
   async getMenuById(id: string): Promise<IMenu | null> {
     return await Menus.findById(id);
   }
+  async deleteMenusById(id: string): Promise<IMenu | null> {
+    return await Menus.findById(id);
+  }
+  async updataMenusById(id: string, dataMenus: IMenu): Promise<IMenu | null> {
+    return await Menus.findById(id, dataMenus, { new: true });
+  }
 }

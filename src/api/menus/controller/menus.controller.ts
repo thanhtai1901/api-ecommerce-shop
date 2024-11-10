@@ -24,20 +24,49 @@ export class MenuController {
         data: menus,
         message: 'create users successfully ',
       });
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'Internal server error' });
     }
   }
   async getMenusById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
-      const menu = await menuService.getMenuById(id);
+      const menus = await menuService.getMenusById(id);
       res.status(200).json({
-        data: Menus,
+        data: menus,
         message: 'get usersById successfully',
       });
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+  async deleteMenusById(req: Request, res: Response): Promise<void> {
+    try {
+      const id = req.params.id;
+      const menus = await menuService.getMenusById(id);
+      res.status(200).json({
+        data: menus,
+        message: 'delete menus uccessfully ',
+      });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
+    }
+  }
+  async updataMenusById(req: Request, res: Response): Promise<void> {
+    try {
+      const id = req.params.id;
+      const dataMenus = req.body;
+      const menus = await menuService.updataMenusById(id, dataMenus);
+      res.status(200).json({
+        data: menus,
+        message: 'update menus uccessfully',
+      });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.massage || 'Internal server error' });
     }
   }
 }

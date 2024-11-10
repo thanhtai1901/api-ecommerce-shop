@@ -38,8 +38,37 @@ export class UsersController {
         data: user,
         message: 'get usersById successfully',
       });
-    } catch (error) {
+    } catch (error: any) {
       res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+  async deleteById(req: Request, res: Response): Promise<void> {
+    try {
+      const id = req.params.id;
+      const user = await usersService.deleteById(id);
+      res.status(200).json({
+        data: user,
+        message: 'xoa thanh cong',
+      });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
+    }
+  }
+  async updataUserById(req: Request, res: Response): Promise<void> {
+    try {
+      const id = req.params.id;
+      const dataUser = req.body;
+      const user = await usersService.updateUserById(id, dataUser);
+      res.status(200).json({
+        data: user,
+        message: 'updata thanh cong',
+      });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
   }
 }

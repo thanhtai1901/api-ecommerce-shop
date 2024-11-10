@@ -12,4 +12,10 @@ usersRouter.post('/', (req, res) => {
 usersRouter.get('/:id', (req, res) => {
   usersController.getUsersById(req, res);
 });
+usersRouter.delete('/:id', (req, res) => {
+  usersController.deleteById(req, res);
+});
+usersRouter.patch('/:id', (req, res) => {
+  usersController.updataUserById(req, res);
+});
 export default usersRouter;
