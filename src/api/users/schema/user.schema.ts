@@ -16,13 +16,11 @@ const usersSchema = new Schema<IUser>(
       type: String,
       enum: [sexUsers.MALE, sexUsers.FEMALE, sexUsers.OTHER],
       default: sexUsers.MALE,
-      required: true,
     },
     role: {
       type: String,
       enum: [roleUsers.ADMIN, roleUsers.MANAGER, roleUsers.USERS],
       default: roleUsers.USERS,
-      required: true,
     },
   },
   { timestamps: true },

@@ -23,10 +23,13 @@ export class UsersController {
         data: users,
         message: 'create users successfully ',
       });
-    } catch (error) {
-      res.status(500).json({ message: 'Internal server error' });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
   }
+
   async getUsersById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
