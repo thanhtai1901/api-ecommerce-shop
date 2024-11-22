@@ -11,3 +11,5 @@ cloudinary.config({
   api_key: cloudApiKey,
   api_secret: clouApiSecret,
 });
+
+export default cloudinary;
