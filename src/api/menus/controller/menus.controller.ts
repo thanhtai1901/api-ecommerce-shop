@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { MenuService } from '../service/menus.service';
-import { Menus } from '../schema/menu.schema';
 
 const menuService = new MenuService();
 export class MenuController {
@@ -25,7 +24,9 @@ export class MenuController {
         message: 'create users successfully ',
       });
     } catch (error: any) {
-      res.status(500).json({ message: 'Internal server error' });
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
   }
   async getMenusById(req: Request, res: Response): Promise<void> {

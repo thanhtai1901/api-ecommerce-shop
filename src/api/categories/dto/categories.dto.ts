@@ -3,3 +3,9 @@ export interface Icategories {
   createAt: Date;
   updateAt: Date;
 }
+
+export interface creatCategotries {
+  name: string;
+  createAt: Date;
+  updateAt: Date;
+}
