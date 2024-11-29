@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { UsersController } from '../controller/users.controller';
+import '../../../../docs/users.swagger.js';
 
 const usersRouter = Router();
 const usersController = new UsersController();

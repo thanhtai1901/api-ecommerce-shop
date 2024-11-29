@@ -5,10 +5,15 @@ import usersRouter from './api/users/router/users.router';
 import menusRouter from './api/menus/router/menus.router';
 import categoriesRouter from './api/categories/router/categories.router';
 import connectRedis from './config/redis/redis.config';
+import setupSwagger from './config/swagger/swagger.config';
+import path = require('path');
 dotenv.config();
 const app = express();
 const PORT = 3000;
 app.use(express.json());
+setupSwagger(app);
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
 connectDatabase();
 connectRedis();
 app.get('/', (req: Request, res: Response) => {
