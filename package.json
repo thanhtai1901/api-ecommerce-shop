@@ -27,6 +27,7 @@
     "i": "^0.3.7",
     "install": "^0.13.0",
     "ioredis": "^5.4.1",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "lint-staged": "^15.2.10",
     "mongodb": "^6.10.0",
