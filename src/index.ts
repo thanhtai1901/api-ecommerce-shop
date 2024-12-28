@@ -7,6 +7,12 @@ import categoriesRouter from './api/categories/router/categories.router';
 import connectRedis from './config/redis/redis.config';
 import setupSwagger from './config/swagger/swagger.config';
 import path = require('path');
+import blogsRouter from './api/blog/router/blog.router';
+import commentsRouter from './api/comments/router/comments.router';
+import likesRouter from './api/like/router/likes.router';
+import cartsRouter from './api/carts/router/carts.router';
+import cartDetailsRouter from './api/carts_details/router/carts_details.router';
+import ordersRouter from './api/order/router/order.router';
 dotenv.config();
 const app = express();
 const PORT = 3000;
@@ -22,6 +28,12 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/menus', menusRouter);
 app.use('/api/v1/categories', categoriesRouter);
+app.use('/api/v1/blogs', blogsRouter);
+app.use('/api/v1/comments', commentsRouter);
+app.use('/api/v1/likes', likesRouter);
+app.use('/api/v1/carts', cartsRouter);
+app.use('/api/v1/cart-details', cartDetailsRouter);
+app.use('api/v1/order', ordersRouter);
 app.listen(PORT, () => {
   console.log(`Server đang chạy ${PORT}`);
 });
