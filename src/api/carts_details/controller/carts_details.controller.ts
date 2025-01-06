@@ -12,8 +12,10 @@ export class CartDetailsController {
         length: cartDetails.length,
         message: 'Get all cart details successfully',
       });
-    } catch (error) {
-      res.status(500).json({ message: 'Internal server error' });
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
   }
 

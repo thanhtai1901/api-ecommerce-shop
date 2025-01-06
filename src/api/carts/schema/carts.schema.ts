@@ -18,4 +18,4 @@ const cartsSchema = new Schema<ICarts>(
 );
 
 // Tạo model từ schema
-export const Carts = model<ICarts>('Carts', cartsSchema);
+export const Carts = model<ICarts>('carts', cartsSchema);
