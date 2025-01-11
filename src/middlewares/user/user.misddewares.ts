@@ -5,9 +5,9 @@ const checkrole = (roles: string[]): RequestHandler => {
   return (req, res, next) => {
     const user = req.user as IUser;
     if (user && roles.includes(user.role)) {
-      return next();
+      next();
     }
-    return res
+    res
       .status(403)
       .json({ message: 'bạn không đúng role nên không thể đăng nhập' });
   };

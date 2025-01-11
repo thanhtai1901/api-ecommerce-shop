@@ -9,8 +9,8 @@ const usersRouter = Router();
 const usersController = new UsersController();
 usersRouter.get(
   '/',
-  authenticateJWT,
-  checkrole([roleUsers.ADMIN]),
+  // authenticateJWT,
+  // checkrole([roleUsers.ADMIN]),
   (req, res) => {
     usersController.getAllUsers(req, res);
   },

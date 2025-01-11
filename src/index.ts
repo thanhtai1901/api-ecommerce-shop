@@ -13,6 +13,8 @@ import likesRouter from './api/like/router/likes.router';
 import cartsRouter from './api/carts/router/carts.router';
 import cartDetailsRouter from './api/carts_details/router/carts_details.router';
 import ordersRouter from './api/order/router/order.router';
+
+import authRouter from './api/auth/router/auth.router';
 dotenv.config();
 const app = express();
 const PORT = 3000;
@@ -25,7 +27,7 @@ connectRedis();
 app.get('/', (req: Request, res: Response) => {
   res.send('taideptrai1901');
 });
-app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/auth', authRouter), app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/menus', menusRouter);
 app.use('/api/v1/categories', categoriesRouter);
 app.use('/api/v1/blogs', blogsRouter);

@@ -1,10 +1,10 @@
-import { Users } from '../users/schema/user.schema';
+import { Users } from '../../users/schema/user.schema';
 import { Response, Request, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
-import { IUser } from '../users/dto/users.dto';
-import connectRedis from '../../config/redis/redis.config';
-import { getAccessToken } from '../../middlewares/token/createToken';
+import { IUser } from '../../users/dto/users.dto';
+import connectRedis from '../../../config/redis/redis.config';
+import { getAccessToken } from '../../../middlewares/token/createToken';
 
 const redisClient = connectRedis();
 export class authController {
