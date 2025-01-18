@@ -15,7 +15,7 @@ usersRouter.get(
     usersController.getAllUsers(req, res);
   },
 );
-usersRouter.post('/', validationesUsers, (req, res) => {
+usersRouter.post('/', (req, res) => {
   usersController.createUsers(req, res);
 });
 usersRouter.get('/:id', (req, res) => {

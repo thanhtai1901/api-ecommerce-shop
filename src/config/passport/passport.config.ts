@@ -8,12 +8,12 @@ import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 passport.use(
   new LocalStrategy(
     {
-      usernameField: 'username',
+      usernameField: 'usersname',
       passwordField: 'password',
     },
-    async (username, password, done) => {
+    async (usersname, password, done) => {
       try {
-        const user = await Users.findOne({ username });
+        const user = await Users.findOne({ usersname });
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }

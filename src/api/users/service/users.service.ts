@@ -1,6 +1,5 @@
 import { IUser, createUser } from '../dto/users.dto';
 import { UsersRepository } from '../repository/users.repository';
-import { Users } from '../schema/user.schema';
 
 export class UsersService {
   private usersRepository = new UsersRepository();

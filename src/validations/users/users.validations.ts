@@ -7,7 +7,7 @@ const usersValidations = Joi.object<IUser>({
     .message('không được dùng dấu hoặc là kí tự đặc biệt hoặc dấu cách')
     .required(),
   password: Joi.string().required(),
-  phone: Joi.string().pattern(/^[0-9]{10,11}$/).required,
+  // phone: Joi.string().pattern(/^[0-9]{10,11}$/).required,
   avatar: Joi.string().required(),
   fullname: Joi.string().required(),
 });

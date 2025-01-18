@@ -6,17 +6,21 @@ import { IUser } from '../../users/dto/users.dto';
 import connectRedis from '../../../config/redis/redis.config';
 import { getAccessToken } from '../../../middlewares/token/createToken';
 
-const redisClient = connectRedis();
 export class authController {
   async register(req: Request, res: Response): Promise<void> {
     try {
-      const { email, password } = req.body;
-      const user = await Users.findOne({ email });
-      if (user) {
+      const { email, password, usersname } = req.body;
+      const Email = await Users.findOne({ email });
+      if (Email) {
         res.status(400).json({ message: 'Email đã tồn tại' });
         return;
       }
-      const salt = await bcrypt.genSalt(12);
+      const usersName = await Users.findOne({ usersname });
+      if (usersName) {
+        res.status(400).json({ message: 'usersName đã tồn tại' });
+        return;
+      }
+      const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
       const newuser = {
         ...req.body,
@@ -25,7 +29,9 @@ export class authController {
       const result = await Users.create(newuser);
       res.status(201).json({ data: result, status: 201 });
     } catch (error: any) {
-      res.status(500).json({ message: 'Lỗi máy chủ nội bộ' });
+      res
+        .status(500)
+        .json({ message: error.message || 'Internal server error' });
     }
   }
 
@@ -51,6 +57,7 @@ export class authController {
           try {
             const accesstoken = getAccessToken(user._id, user.role);
             const Refresh = getAccessToken(user._id, user.role);
+            const redisClient = connectRedis();
             await redisClient.set(
               user._id.toString(),
               Refresh,

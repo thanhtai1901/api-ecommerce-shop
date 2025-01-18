@@ -7,7 +7,7 @@ const authRouter = Router();
 const controller = new authController();
 
 // Endpoint để đăng ký người dùng
-authRouter.post('/register', validationesUsers, (req, res) => {
+authRouter.post('/register', (req, res) => {
   controller.register(req, res);
 });
 
