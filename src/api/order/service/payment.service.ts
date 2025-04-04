@@ -6,6 +6,7 @@ import {
   generateMac,
   generateTransId,
   buildOrderData,
+  createMac,
 } from '../../../utilts/zalopayment.util';
 import { CallbackDto } from '../dto/payment.dto';
 import { CartItem } from '../../../types/cart';
@@ -45,7 +46,8 @@ export class PaymentService {
         description: `Thanh toán đơn hàng ${order._id}`,
         bank_code: '',
         callback_url:
-          'https://210f-42-115-74-118.ngrok-free.app/api/v1/order/callback',
+          // 'https://210f-42-115-74-118.ngrok-free.app/api/v1/order/callback', run for local
+          'https://top-gear-7o5h5vkx5-anhhoangsysons-projects.vercel.app/api/v1/order/callback',
         mac: '',
       };
 
@@ -85,17 +87,13 @@ export class PaymentService {
   }
 
   async handleCallback(dto: CallbackDto) {
-    console.log('Callback received:', dto);
     const mac = generateMac(dto.data, zaloPayConfig.key2);
-    console.log('Computed MAC:', mac, 'Received MAC:', dto.mac);
 
     if (dto.mac !== mac) {
-      console.log('MAC verification failed');
       return { return_code: -1, return_message: 'mac not equal' };
     }
 
     const dataJson = JSON.parse(dto.data);
-    console.log('Parsed callback data:', dataJson);
 
     const updatedOrder = await this.orderRepository.updateStatus(
       dataJson.app_trans_id, // Tìm bằng app_trans_id
@@ -103,7 +101,6 @@ export class PaymentService {
     );
 
     if (!updatedOrder) {
-      console.log('Order not found for app_trans_id:', dataJson.app_trans_id);
       return { return_code: -1, return_message: 'Order not found' };
     }
 
@@ -118,22 +115,8 @@ export class PaymentService {
       mac: '',
     };
 
-    function createMac(appId: string, appTransId: string) {
-      const key1 = zaloPayConfig.key1;
-      const message = `${appId}|${appTransId}|${key1}`;
-
-      // HMAC với thuật toán SHA256
-      const hmac = createHmac('sha256', key1);
-      hmac.update(message);
-
-      // Trả về giá trị MAC
-      return hmac.digest('hex');
-    }
-    const a = createMac(zaloPayConfig.app_id, appTransId);
-    console.log('MAC:', a);
-
     const mytime = Date.now(); // Thời gian hiện tại
-    const dataToSign = `${queryData.app_id}|${queryData.app_trans_id}|${mytime}`;
+    // const dataToSign = `${queryData.app_id}|${queryData.app_trans_id}|${mytime}`;
     // queryData.mac = generateMac(dataToSign, zaloPayConfig.key1);
 
     queryData.mac = createMac(zaloPayConfig.app_id, appTransId);
